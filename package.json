@@ -1,7 +1,7 @@
 {
-  "name": "twitter-webhook-boilerplate-node",
+  "name": "twilio-flex-twitter-channel",
   "version": "1.0.0",
-  "description": "Sample web app and helper scripts to get started with Twitter's Account Activity API",
+  "description": "Sample app based that shows how to add Twitter DMs as a channel to Twilio Flex",
   "engines": {
     "node": "5.9.1"
   },
@@ -19,6 +19,8 @@
     "express-session": "^1.15.6",
     "http-auth": "^3.2.3",
     "memory-cache": "^0.2.0",
+    "ngrok": "3.3.0",
+    "node-fetch": "2.6.1",
     "passport": "^0.4.0",
     "passport-twitter": "^1.0.4",
     "prompt-promise": "^1.0.3",
@@ -26,18 +28,20 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "socket.io": "2.0.4",
+    "twilio": "3.52.0",
     "uuid": "^3.2.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/twitterdev/account-activity-dashboard"
+    "url": "https://github.com/aymenn/twilio-flex-twitter-integration"
   },
   "keywords": [
     "node",
-    "heroku",
     "express",
     "webhook",
-    "twitter"
+    "twitter",
+    "twilio",
+    "twilio Flex"
   ],
   "license": "MIT"
 }

@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
-const TwitterStrategy = require('passport-twitter')
 const uuid = require('uuid/v4')
 const security = require('./helpers/security')
 const auth = require('./helpers/auth')
@@ -10,6 +9,9 @@ const cacheRoute = require('./helpers/cache-route')
 const socket = require('./helpers/socket')
 
 const app = express()
+const model = require('./example_scripts/flex/channelproxy');
+const flex = require('./example_scripts/flex/flexchannels');
+
 
 app.set('port', (process.env.PORT || 5000))
 app.set('views', __dirname + '/views')
@@ -25,9 +27,10 @@ app.use(session({
   saveUninitialized: true
 }))
 
+
 // start server
 const server = app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'))
+  console.log('Node app is running on port', app.get('port'));
 })
 
 // initialize socket.io
@@ -71,7 +74,11 @@ app.post('/webhook/twitter', function(request, response) {
   })
 
   response.send('200 OK')
+
+  model.handleTwitterEvent(request.body);
 })
+
+app.use('/message-events', flex.router);
 
 
 /**
@@ -95,14 +102,14 @@ app.get('/subscriptions', auth.basic, cacheRoute(1000), require('./routes/subscr
  * Starts Twitter sign-in process for adding a user subscription
  **/
 app.get('/subscriptions/add', passport.authenticate('twitter', {
-  callbackURL: '/callbacks/addsub'
+  callbackURL: `${process.env.WEBHOOK_BASE_URL}/callbacks/addsub`
 }));
 
 /**
  * Starts Twitter sign-in process for removing a user subscription
  **/
 app.get('/subscriptions/remove', passport.authenticate('twitter', {
-  callbackURL: '/callbacks/removesub'
+  callbackURL: `${process.env.WEBHOOK_BASE_URL}/callbacks/removesub`
 }));
 
 
