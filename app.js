@@ -9,8 +9,8 @@ const cacheRoute = require('./helpers/cache-route')
 const socket = require('./helpers/socket')
 
 const app = express()
-const model = require('./example_scripts/flex/channelproxy');
-const flex = require('./example_scripts/flex/flexchannels');
+const model = require('./flex/channelproxy');
+const flex = require('./flex/flexchannels');
 
 
 app.set('port', (process.env.PORT || 5000))

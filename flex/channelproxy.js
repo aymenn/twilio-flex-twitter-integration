@@ -2,7 +2,7 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
 const request = require('request-promise')
-const auth = require('../../helpers/auth.js')
+const auth = require('../helpers/auth.js')
 
 
 // Flex channel SID to Twitter user ID mapping
